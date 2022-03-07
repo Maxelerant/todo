@@ -5,6 +5,6 @@ import 'package:todo/src/container/todo-list/todo_list.dart';
   selector: 'my-app',
   styleUrls: ['app_component.css'],
   templateUrl: 'app_component.html',
-  directives: [TodoListComponent],
+  directives: [TodoList],
 )
 class AppComponent {}

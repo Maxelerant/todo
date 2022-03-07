@@ -1,0 +1,39 @@
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--c-gray-light);
+  margin: auto;
+}
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+}
+.logo {
+  font-family: var(--f-secondary);
+  font-size: 40px;
+}
+.logo > span {
+  color: var(--c-primary);
+  font-family: var(--f-secondary);
+}
+.todos{
+  overflow-y: auto;
+}
+.empty-state{
+  border-radius: 5px;
+  margin:0 10px 30px 0;
+  height: 30vh;
+  border: 1px dashed var(--c-primary);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+

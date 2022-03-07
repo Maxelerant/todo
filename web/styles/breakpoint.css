@@ -1,0 +1,38 @@
+.content{
+  overflow-y: auto;
+  border-radius: 5px;
+  border: 1px solid var(--c-border);
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+@media (min-width: 360px) {
+  .content {
+    width: 90%;
+    margin: 20px auto;
+    padding: 10px;
+    
+  }
+}
+@media (min-width: 720px) {
+  .content {
+    width: 60%;
+    margin: 20px auto;
+    padding: 30px;
+  }
+}
+@media (min-width: 1024px) {
+  .content {
+    width: 45%;
+    margin: 20px auto;
+    padding: 40px;
+  }
+}
+@media (min-width: 1280px) {
+  .content {
+    width: 30%;
+    margin: 30px auto;
+    padding: 50px;
+  }
+}

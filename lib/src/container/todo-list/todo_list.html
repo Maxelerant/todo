@@ -1,16 +1,46 @@
-<div *ngIf="todos.isEmpty">
-  <p>No Todos added.</p>
-</div>
-<div *ngFor="let todo of todos; let $i = index">
-  <ng-container *ngIf="!todo.edit">
-    <h5>{{todo.title}}</h5>
-    <p>{{todo.description}}</p>
-    <button (click)="editTodo($i)">Edit</button>
-  </ng-container>
-  <ng-container *ngIf="todo.edit">
-    <todo-form (onDelete)="removeTodo($i)" [todo]="todo"></todo-form>
-  </ng-container>
-</div>
-<div>
-  <button (click)="addTodo()">Add Todo</button>
+<div class="container">
+  <div class="content">
+    <header class="header">
+      <a class="logo"><span>.tefer</span>todo</a>
+      <button *ngIf="editMode==''" class="btn-primary" (click)="addTodo()">
+        Add Todo
+      </button>
+    </header>
+    <main>
+      <div *ngIf="todos.isEmpty">
+        <template [ngIf]="!isLoading">
+          <div class="empty-state">
+            <img [src]="emptyImg" class="icon" alt="Empty">
+            <h3>No Todos Available</h3>
+          </div>
+          </template>
+        <template  [ngIf]="isLoading">
+          <p class="loading">Fetching Todos...</p>
+          </template>
+      </div>
+
+      <div class="todos">
+        <div *ngFor="let todo of todos; let $i = index">
+          <div class="card" *ngIf="!todo.edit">
+            <div>
+              <h3>{{todo.title}}</h3>
+              <p>{{todo.description}}</p>
+            </div>
+            <button *ngIf="editMode!='add'" class="btn-secondary" (click)="editTodo($i)">Edit</button>
+          </div>
+          <ng-container *ngIf="todo.edit">
+            <todo-form
+              [editMode]="editMode"
+              (onCancel)="cancelTodo($i)"
+              (onUpdate)="updateTodo($i)"
+              (onDelete)="removeTodo($i)"
+              [todo]="todo"
+            ></todo-form>
+          </ng-container>
+        </div>
+      </div>
+      
+      
+    </main>
+  </div>
 </div>

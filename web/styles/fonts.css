@@ -1,0 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Patua+One&display=swap');
+
+:root{
+  --f-primary: "DM Sans", sans-serif;
+  --f-secondary: "Patua One", cursive;
+}

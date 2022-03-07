@@ -10,12 +10,22 @@ import 'package:todo/src/models/todo.dart';
   templateUrl: 'todo_form.html',
   directives: [coreDirectives, formDirectives],
 )
-class TodoFormComponent implements OnInit {
+class TodoForm implements OnInit {
   @Input()
   Todo todo;
+  @Input()
+  String editMode;
   Todo editedTodo;
+  bool submitted = false;
 
+  final _formCancelController = StreamController();
+  final _formUpdateController = StreamController();
   final _formDeleteController = StreamController();
+
+  @Output('onCancel')
+  Stream get formCancel => _formCancelController.stream;
+  @Output('onUpdate')
+  Stream get formUpdate => _formUpdateController.stream;
   @Output('onDelete')
   Stream get formDelete => _formDeleteController.stream;
 
@@ -24,10 +34,18 @@ class TodoFormComponent implements OnInit {
     editedTodo = Todo()..update(todo);
   }
 
-  void updateTodo() {
-    todo
-      ..update(editedTodo)
-      ..edit = false;
+  void cancelTodo() {
+    _formCancelController.add(null);
+  }
+
+  void updateTodo(NgForm form) {
+    submitted = true;
+    if (form.valid) {
+      todo
+        ..update(editedTodo)
+        ..edit = false;
+      _formUpdateController.add(null);
+    }
   }
 
   void removeTodo() {
