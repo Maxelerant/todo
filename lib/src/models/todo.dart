@@ -14,7 +14,7 @@ class Todo {
           edit: todo['edit'] ?? false,
         );
 
-  addMap() => {'title': title, 'description': description};
+  asMap() => {'title': title, 'description': description};
 
   void update(Todo todo) {
     title = todo.title;

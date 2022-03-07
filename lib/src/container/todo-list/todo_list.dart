@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:angular/angular.dart';
 import 'package:todo/src/components/todo_form/todo_form.dart';
 import 'package:todo/src/services/todo_service.dart';
@@ -31,6 +33,7 @@ class TodoList implements OnInit {
   }
 
   void editTodo(int index) {
+    window.console.log(index);
     editMode = 'edit';
     todos[index].edit = true;
   }
@@ -56,6 +59,7 @@ class TodoList implements OnInit {
   }
 
   void removeTodo(int index) async {
+    window.console.log(todos[index]);
     await _todoService.removeTodo(todos[index]);
     todos.removeAt(index);
     editMode = '';

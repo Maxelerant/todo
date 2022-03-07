@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:firebase/firebase.dart';
 
@@ -6,9 +7,6 @@ import '../models/todo.dart';
 
 @Injectable()
 class TodoService {
-  Database _db;
-  DatabaseReference _ref;
-
   TodoService() {
     initializeApp(
         apiKey: 'AIzaSyBIrdyBDhpqa64TWfGCnaG6gqT-7QCJpls',
@@ -23,6 +21,9 @@ class TodoService {
     _ref = _db.ref('todos').ref;
   }
 
+  Database _db;
+  DatabaseReference _ref;
+
   Future<List<Todo>> getTodos() async {
     final todos = <Todo>[];
     final queryEvent = await _ref.once('value');
@@ -31,6 +32,7 @@ class TodoService {
     if (tdData != null) {
       tdData.forEach((key, val) {
         var details = val as Map<String, dynamic>;
+        details['id'] = key;
         todos.add(Todo.fromMap(details));
       });
     }
@@ -39,16 +41,15 @@ class TodoService {
   }
 
   Future addTodo(Todo todo) async {
-    var res = await _ref.push(todo.addMap());
+    var res = await _ref.push(todo.asMap());
     return res.key;
   }
 
   Future updateTodo(Todo todo) async {
-    return await _ref.child(todo.id).set(todo.addMap());
+    return await _ref.child(todo.id).set(todo.asMap());
   }
 
   Future removeTodo(Todo todo) async {
-    print(todo.id);
     return await _ref.child(todo.id).remove();
   }
 }
