@@ -22,11 +22,11 @@
       <div class="todos">
         <div *ngFor="let todo of todos; let $i = index">
           <div class="card" *ngIf="!todo.edit">
-            <div>
+            <div class="card-title">
               <h3>{{todo.title}}</h3>
-              <p>{{todo.description}}</p>
+              <button *ngIf="editMode!='add'" class="btn-secondary" (click)="editTodo($i)">Edit</button>
             </div>
-            <button *ngIf="editMode!='add'" class="btn-secondary" (click)="editTodo($i)">Edit</button>
+            <p>{{todo.description}}</p>
           </div>
           <ng-container *ngIf="todo.edit">
             <todo-form

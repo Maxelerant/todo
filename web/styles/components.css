@@ -4,9 +4,6 @@
   margin-bottom: 10px;
   background-color: var(--c-gray-light);
   border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
 }
 
 
