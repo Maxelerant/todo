@@ -1,0 +1,5 @@
+<form>
+  <input [(ngModel)]="editedTodo.title"  type="text" name="title" placeholder="Title">
+  <textarea [(ngModel)]="editedTodo.description" name="description" placeholder="Description"></textarea>
+  <button (click)="updateTodo()">Update</button><button (click)="todo.edit=false">Cancel</button><button (click)="removeTodo()">Delete</button>
+</form>

@@ -1,0 +1,16 @@
+<div *ngIf="todos.isEmpty">
+  <p>No Todos added.</p>
+</div>
+<div *ngFor="let todo of todos; let $i = index">
+  <ng-container *ngIf="!todo.edit">
+    <h5>{{todo.title}}</h5>
+    <p>{{todo.description}}</p>
+    <button (click)="editTodo($i)">Edit</button>
+  </ng-container>
+  <ng-container *ngIf="todo.edit">
+    <todo-form (onDelete)="removeTodo($i)" [todo]="todo"></todo-form>
+  </ng-container>
+</div>
+<div>
+  <button (click)="addTodo()">Add Todo</button>
+</div>
